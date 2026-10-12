@@ -38,8 +38,8 @@ export default function GithubStats() {
         fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}`).then(async (res) => {
             setContributions(await res.json());
         });
-        fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos`).then(async (res) => {
-            setRepoCount(((await res.json()) as any[]).length);
+        fetch(`https://api.github.com/users/${GITHUB_USERNAME}`).then(async (res) => {
+            setRepoCount((await res.json()).public_repos);
         })
     }, [setContributions, setRepoCount]);
 
